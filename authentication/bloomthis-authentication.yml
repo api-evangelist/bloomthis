@@ -1,0 +1,31 @@
+generated: '2026-07-18'
+method: searched
+source: https://bloomthis.co/.well-known/openid-configuration
+notes: >-
+  Auth is provided by the Shopify Customer Account API (OpenID Connect / OAuth 2.0),
+  discovered live at /.well-known/openid-configuration and /.well-known/oauth-authorization-server.
+  The UCP MCP shopping endpoint layers buyer-approval consent on top for agent-driven checkout.
+summary:
+  types: [oauth2, openIdConnect]
+  oauth2_flows: [authorizationCode]
+  pkce: [S256]
+  grant_types: [authorization_code, refresh_token, 'urn:ietf:params:oauth:grant-type:jwt-bearer']
+schemes:
+- name: ShopifyCustomerAccountOIDC
+  type: openIdConnect
+  issuer: https://shopify.com/authentication/7814423
+  openIdConnectUrl: https://bloomthis.co/.well-known/openid-configuration
+  authorization_endpoint: https://shopify.com/authentication/7814423/oauth/authorize
+  token_endpoint: https://shopify.com/authentication/7814423/oauth/token
+  end_session_endpoint: https://shopify.com/authentication/7814423/logout
+  jwks_uri: https://shopify.com/authentication/7814423/.well-known/jwks.json
+  token_endpoint_auth_methods_supported: [client_secret_basic]
+  id_token_signing_alg_values_supported: [RS256]
+  code_challenge_methods_supported: [S256]
+  sources: [well-known/bloomthis-openid-configuration.json]
+- name: UCPBuyerApproval
+  type: consent
+  description: >-
+    Agent-driven checkout through the UCP MCP endpoint requires contemporaneous buyer
+    approval at the moment of payment; agents must not complete payment without explicit consent.
+  sources: [well-known/bloomthis-ucp.json, llms/bloomthis-llms.txt]
