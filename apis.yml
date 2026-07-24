@@ -1,8 +1,28 @@
 aid: bloomthis
 name: BloomThis
-description: BloomThis is a company surfaced as a portfolio company of 500-global and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  BloomThis is a Malaysian online florist and gifting brand (backed by 500 Global) offering
+  fresh flower boxes, hand-tied bouquets, and weekly fresh-flower subscriptions, with a free
+  personalised card and photo on every order and free same-day delivery across Kuala Lumpur,
+  Selangor, Kedah, Penang, Negeri Sembilan, and Johor Bahru. Its Shopify storefront natively
+  exposes an agent-commerce surface via the Universal Commerce Protocol (UCP): a hosted MCP
+  endpoint at /api/ucp/mcp, an OpenID Connect / OAuth Customer Account API, and published
+  /llms.txt and /agents.md instructions that let AI shopping agents search the catalog, build a
+  cart, and run a buyer-approved checkout.
 url: https://raw.githubusercontent.com/api-evangelist/bloomthis/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://bloomthis.co/cdn/shop/files/bloomthis-home-desktop_72fd684e-14fb-4cff-a9ac-c10a9e971094.jpg?v=1781515992&width=2048
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -11,15 +31,66 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
-apis: []
+- Flowers
+- Gifting
+- Ecommerce
+- Retail
+- Shopify
+- Agent Commerce
+- MCP
+- Malaysia
+apis:
+- name: BloomThis Agent Commerce (UCP / Storefront)
+  description: >-
+    Agent-facing commerce surface of the BloomThis Shopify store — a hosted UCP MCP endpoint for
+    search-to-buyer-approved-checkout, the Shopify Customer Account OIDC/OAuth API, and the
+    read-only storefront product/collection JSON endpoints.
+  humanURL: https://bloomthis.co
+  baseURL: https://bloomthis.co
+  properties:
+  - type: MCPServer
+    url: mcp/bloomthis-mcp.yml
+  - type: Authentication
+    url: authentication/bloomthis-authentication.yml
+  - type: OAuthScopes
+    url: scopes/bloomthis-scopes.yml
+common:
+- type: Website
+  url: https://bloomthis.co
+- type: Blog
+  url: https://bloomthis.co/blogs/news
+- type: PrivacyPolicy
+  url: https://bloomthis.co/policies/privacy-policy
+- type: TermsOfService
+  url: https://bloomthis.co/policies/terms-of-service
+- type: LLMsTxt
+  url: llms/bloomthis-llms.txt
+- type: WellKnown
+  url: well-known/bloomthis-well-known.yml
+- type: MCPServer
+  url: mcp/bloomthis-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Authentication
+  url: authentication/bloomthis-authentication.yml
+- type: OAuthScopes
+  url: scopes/bloomthis-scopes.yml
+- type: Conformance
+  url: conformance/bloomthis-conformance.yml
+- type: Conventions
+  url: conventions/bloomthis-conventions.yml
+- type: DomainSecurity
+  url: security/bloomthis-domain-security.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
-common:
-- type: Website
-  url: https://bloomthis.co
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

@@ -1,0 +1,25 @@
+generated: '2026-07-18'
+method: searched
+source: live probe of /.well-known/* and /llms.txt on https://bloomthis.co
+standards:
+- id: openid-connect
+  conforms: true
+  evidence: /.well-known/openid-configuration serves a valid OIDC discovery document (issuer, jwks_uri, RS256 id tokens)
+- id: oauth2
+  conforms: true
+  evidence: authorizationCode flow with grant_types authorization_code + refresh_token
+- id: oauth2-authorization-server-metadata-rfc8414
+  conforms: true
+  evidence: /.well-known/oauth-authorization-server returns RFC 8414 authorization server metadata
+- id: pkce-rfc7636
+  conforms: true
+  evidence: code_challenge_methods_supported includes S256
+- id: ucp
+  conforms: true
+  evidence: /.well-known/ucp advertises Universal Commerce Protocol versions 2026-04-08 and 2026-01-23
+- id: mcp
+  conforms: true
+  evidence: hosted MCP endpoint at /api/ucp/mcp (transport mcp) advertised in the UCP profile
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404

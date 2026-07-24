@@ -1,0 +1,35 @@
+generated: '2026-07-18'
+method: searched
+source: https://bloomthis.co/llms.txt, https://bloomthis.co/.well-known/ucp
+notes: >-
+  Cross-cutting semantics for the agent-commerce surface of the BloomThis Shopify store.
+  Derived from the published /llms.txt agent instructions and the UCP merchant profile;
+  no idempotency contract is documented, so no Idempotency pointer is emitted.
+authentication:
+  style: OAuth 2.0 / OpenID Connect (Shopify Customer Account API) + UCP buyer-approval consent
+  reference: authentication/bloomthis-authentication.yml
+versioning:
+  style: date-based protocol negotiation (UCP version strings)
+  current: '2026-04-08'
+  supported: ['2026-04-08', '2026-01-23']
+  note: agents negotiate the UCP protocol version; storefront JSON endpoints are unversioned
+rate_limiting:
+  signaled: true
+  mechanism: per-IP rate limiting on the MCP endpoint; agents must back off on HTTP 429
+  source: https://bloomthis.co/llms.txt
+consent:
+  invariant: checkout requires contemporaneous human buyer approval before payment is completed
+  fallback: route payment through the Shop skill (https://shop.app/SKILL.md) / Shop Pay
+buyer_context:
+  fields: [context.address_country, context.currency]
+  note: pass buyer context for accurate pricing and availability
+read_only_surface:
+  product_json: GET /products/{handle}.json
+  collection_json: GET /collections/{handle}/products.json
+  search: GET /search?q={query}&type=product
+  sitemap: GET /sitemap.xml
+idempotency:
+  supported: false
+  note: no idempotency-key contract is documented for the storefront or MCP endpoint
+error_envelope:
+  mcp: JSON-RPC 2.0 error object (code, message, data) — observed code -32001 UCP discovery failed

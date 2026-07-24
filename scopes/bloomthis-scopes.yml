@@ -1,0 +1,28 @@
+generated: '2026-07-18'
+method: searched
+source: https://bloomthis.co/.well-known/openid-configuration
+docs: https://shopify.dev/docs/api/customer
+schemes:
+- name: ShopifyCustomerAccountOIDC
+  source: well-known/bloomthis-openid-configuration.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://shopify.com/authentication/7814423/oauth/authorize
+    tokenUrl: https://shopify.com/authentication/7814423/oauth/token
+scopes:
+- scope: openid
+  description: OpenID Connect authentication; issue an ID token for the customer.
+  flows: [authorizationCode]
+  sources: [well-known/bloomthis-openid-configuration.json]
+- scope: email
+  description: Access the customer's email address and verification status.
+  flows: [authorizationCode]
+  sources: [well-known/bloomthis-openid-configuration.json]
+- scope: customer-account-api:full
+  description: Full access to the Shopify Customer Account API on behalf of the signed-in customer.
+  flows: [authorizationCode]
+  sources: [well-known/bloomthis-openid-configuration.json]
+- scope: customer-account-mcp-api:full
+  description: Full access to the Customer Account MCP API surface for agent-driven customer operations.
+  flows: [authorizationCode]
+  sources: [well-known/bloomthis-openid-configuration.json]

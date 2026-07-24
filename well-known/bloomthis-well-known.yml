@@ -1,0 +1,27 @@
+generated: '2026-07-18'
+method: searched
+source: live probe of https://bloomthis.co/.well-known/*
+host: https://bloomthis.co
+documents:
+- path: /.well-known/openid-configuration
+  status: 200
+  file: bloomthis-openid-configuration.json
+  note: OIDC discovery for Shopify Customer Account API (issuer shopify.com/authentication/7814423)
+- path: /.well-known/oauth-authorization-server
+  status: 200
+  file: bloomthis-oauth-authorization-server.json
+  note: RFC 8414 OAuth 2.0 authorization server metadata (identical payload to OIDC config)
+- path: /.well-known/ucp
+  status: 200
+  file: bloomthis-ucp.json
+  note: Universal Commerce Protocol merchant profile (versions, MCP endpoint, capabilities)
+- path: /agents.md
+  status: 200
+  file: bloomthis-agents.md
+  note: canonical agent-facing store description (mirrored by /llms.txt)
+- path: /.well-known/security.txt
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404
