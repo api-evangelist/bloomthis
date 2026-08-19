@@ -2,12 +2,10 @@ generated: '2026-07-18'
 method: searched
 status: published
 source: https://bloomthis.co/.well-known/ucp
-notes: >-
-  BloomThis is a Shopify store that natively exposes a hosted MCP endpoint via the
-  Universal Commerce Protocol (UCP, https://ucp.dev). The endpoint speaks JSON-RPC MCP.
-  A live tools/list without a UCP agent profile URI returns 422 (invalid_profile_url),
-  so the tool set below is the documented UCP shopping surface from /llms.txt and the
-  UCP shopping schema (mcp.openrpc.json), not a fabricated list.
+notes: BloomThis is a Shopify store that natively exposes a hosted MCP endpoint via the Universal Commerce
+  Protocol (UCP, https://ucp.dev). The endpoint speaks JSON-RPC MCP. A live tools/list without a UCP agent
+  profile URI returns 422 (invalid_profile_url), so the tool set below is the documented UCP shopping
+  surface from /llms.txt and the UCP shopping schema (mcp.openrpc.json), not a fabricated list.
 server:
   name: bloomthis-ucp-shopping
   transport: http
@@ -37,3 +35,11 @@ tools:
 - name: complete_checkout
   description: Finalize the purchase (buyer must approve payment).
   source: https://bloomthis.co/llms.txt
+deployment:
+  mode: remote
+  endpoint: https://bloomthis.myshopify.com/api/ucp/mcp
+  verified: probed
+  probe: live
+  tools: 13
+  checked: '2026-08-12'
+  source: catalog MCP census
