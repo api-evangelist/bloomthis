@@ -70,7 +70,6 @@ apis:
     search-to-buyer-approved-checkout, the Shopify Customer Account OIDC/OAuth API, and the
     read-only storefront product/collection JSON endpoints.
   humanURL: https://bloomthis.co
-  baseURL: https://bloomthis.co
   properties:
   - type: MCPServer
     url: mcp/bloomthis-mcp.yml
@@ -78,6 +77,9 @@ apis:
     url: authentication/bloomthis-authentication.yml
   - type: OAuthScopes
     url: scopes/bloomthis-scopes.yml
+  x-surface: platform-generated
+  x-platform: shopify
+  x-platform-surface: ucp
 common:
 - type: Website
   url: https://bloomthis.co
